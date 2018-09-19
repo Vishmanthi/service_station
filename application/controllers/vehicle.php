@@ -1,24 +1,7 @@
 <?php
 
-class Users extends CI_Controller{
-	public function login(){
-		$this->form_validation->set_rules('username','Username','trim|required|min_length[3]');
-		$this->form_validation->set_rules('password','Password','trim|required|min_length[3]');
-		// echo $this->input->post('username');
-		if($this->form_validation->run()==FALSE){
-			$data=array(
-				'errors'=>validation_errors()
-			);
-			$this->session->set_flashdata($data);
-			redirect('home');
-		}else{
-			$username=$this->input->post('username');
-			$password=$this->input->post('password');
-			$this->user_model->login_user($username,$password);
-
-		}
-
-	}
+class Vehicle extends CI_Controller{
+	
 
 	public function register(){
 		$this->form_validation->set_rules('first_name','First Name','trim|required');
@@ -35,8 +18,8 @@ class Users extends CI_Controller{
            redirect('dashboard');
 
 		}else{
-			$this->load->model('user_model');
-			$this->user_model->create_customer();
+			$this->load->model('vehicle_model');
+			$this->user_model->create_vehicle();
 			// 	echo "sustomer created";
 			// }else{
 			// 	echo "something wrong";
@@ -44,11 +27,6 @@ class Users extends CI_Controller{
 			
 		} 
 
-
-	}
-
-	public function get_customer(){
-		$this->user_model->find_customer();
 
 	}
 
